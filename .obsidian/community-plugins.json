@@ -1,5 +1,11 @@
 [
   "colored-text",
+  "dataview",
+  "obsidian-excalidraw-plugin",
+  "OA-file-hider",
+  "highlightr-plugin",
+  "obsidian-file-color",
   "folder-notes",
-  "waypoint"
+  "waypoint",
+  "obsidian-kanban"
 ]
