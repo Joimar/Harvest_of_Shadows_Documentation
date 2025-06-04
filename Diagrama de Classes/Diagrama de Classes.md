@@ -144,7 +144,7 @@ class PlayerManager{
 }
 
 PlayerManager *-- Player: retrieves data from
-PlayerManager *-- PlayerDTO : uses
+PlayerManager *-- PlayerDTO 
 
 class Player{
 - Animator animator
@@ -165,5 +165,56 @@ class Player{
 
 Player --> PlayerDTO: can be instantiated using
 Player *-- Inventory
+
+class SaveManager{
+- String SaveFolder
+- String SaveFileName
+- Dictionary<String,StageData> cachedStageData
++ SaveGame()
++ LoadGame()
++ SaveStageData(String stageName)
++ LoadStageData(String stageName)
+- RestorePlayer(StageData stageData)
++ RestoreNPCsFromStageData(StageData stageData)
+- CollectStageData(String stageName): StageData
+- CollectNPCData():List<NPCDTO>
+- RestoreStageData(StageData stageData)
+}
+
+SaveManager  --> StageData : uses
+SaveManager --> NPCDTO : manipulates
+SaveManager --> UniqueID : uses
+SaveManager --> GameSaveData: uses
+
+class ScreenCode{
+<<enum>>
+ Pause
+ Options
+ Inventory
+ Bestiary
+ Recipies
+ Diary
+ Dialoguebox
+}
+
+class UIManager{
+- GameObject inventoryUI
+- GameObject optionsUI
+- GameObject optionsUI
+- DialogueUI dialogueBox
++ IsDialogueBoxActive
+- GameObject EventSystem
++ Show(ScreenCode screenCode)
++ Hide(ScreenCode screenCode)
+- HideAll()
++ ShowDialogueBox()
++ HideDialogueBox()
++ IsVisible(ScreeCode screenCode): bool
++ GetActiveScreen(): ScreenCode
+}
+
+UIManager o-- DialogueUI
+UIManager --> ScreenCode : uses
+
 ```
 
