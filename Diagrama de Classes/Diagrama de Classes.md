@@ -225,6 +225,9 @@ class UIManager{
 
 UIManager o-- DialogueUI
 UIManager --> ScreenCode : uses
+UIManager o-- DiaryUI
+UIManager o-- InventoryUI
+UIManager o-- OptionsUI
 
 class DialogueEvents{
 + static event Action~DialogueLine~ OnShowDialogueLine
@@ -471,8 +474,86 @@ class DialogueUI{
 - VisualElement optionElement
 - Label textLabel
 - VisualElement portrait
-- HangleDialogueLine(DialogueLine dialogueLine)
+- HandleShowDialogueLine(DialogueLine dialogueLine)
+- HandleShowOption(List~String~options,Action~int~onOptionSelected)
+- HandleClearDialogue()
++ ShowSelf()
++ HideSelf()
+- CloneVisualElement(VisualElement original) : VisualElement 
 }
 
-```
+DialogueUI --> DialogueLine : uses
 
+class InventoryUI{
+	<<Essa porra aqui é um monstro>>
+}
+
+DiaryUI --> UIHelper : uses
+InventoryUI --> UIHelper : uses
+OptionsUI --> UIHelper : uses
+
+class UIHelper{
+<<static>>
++ statis LoadNavigationBar(VisualTreeAsset template, Action onInventory, Action onDiary, Action onOptions) : VisualElement
++ LoadNavigationBar(VisualTreeAsset template) : VisualElement
+}
+
+class Inventory{
+	+ EquippedItems equippedItems
+	+ bool[][] inventoryGrid
+	+ List~IventoryItemData~ itemsData
+	+ int Height
+	+ int Width
+	+ Inventory(int height, int widht)
+	+ FindAvailablePosition(InventoryItemData item):? ItemPos
+	+ AddItemAuto(IventoryItemData item) : bool
+	+ AddItemExplicit(IventoryItemData item, ItemPos position): bool
+	+ IsValidPosition(int xStart, int yStart, int width, int height): bool
+	+ PlaceItem(InventoryItemData item, ItemPos pos) : bool
+	+ MoveItem(InventoryItemData item, ItemPos newPosition)
+	+ RemoveItem(InventoryItemData item)
+	+ GetAllItems(): List~InventoryItemData~
+}
+
+class ItemPos{
+<<struct>>
++ int xpos
++ int ypos
+}
+
+Inventory --> EquippedItems : Incorporates
+Inventory --> ItemPos: uses
+Inventory o-- InventoryItemData
+
+class EquippedItems{
+<<struct>>
++ InventoryItemData Weapon
++ InventoryItemData Armor
++ InventoryItemData Consumable1
++ InventoryItemData Consumable2
+}
+
+class InventoryItemData{
+	- Item item
+	- int quantity
+	- ItemPos itemPos
+	- int width
+	- int height
+	- bool isItemEquipped
+	+ InventoryItemData(Item item, int quantity, int width, int height, bool isItemEquiped = false) 
+}
+
+InventoryItemData *-- Item
+
+class InventoryItemDataOperations{
+<<static>>
++ static CompareItemPositions(InventoryItemData item1, InventoryItemData item2): bool
++ static CompareItemPositions(ItemPos item1, ItemPos item2): bool 
++ static CompareInventoryItemDataContents(InventoryItemData item1, InventoryItemData item2): bool
++ static CompareInventoryItemDataItems(InventoryItemData item1, InventoryItemData item2): bool 
+}
+
+InventoryItemDataOperations --> InventoryItemData
+InventoryUI --> InventoryItemDataOperations : uses
+InventoryItemDataOperations --> ItemPos
+```
