@@ -485,11 +485,98 @@ class DialogueUI{
 DialogueUI --> DialogueLine : uses
 
 class InventoryUI{
-	<<Essa porra aqui é um monstro>>
+- VisualElement rootVisualElement
+- VisualElement inventoryGrid
+- InventoryItemData selectedItem
+- VisualTreeAsset navBarTemplate
+- InventoryItemData currentItem
+- InventoryItemData originalItem
+- DamageTypeIcons damageTypeIcons
+- ItemStatsIcons itemStatsIcons
+- Inventory inventory
+- VisualElement floatingItem
+- Label itemNameLabel
+- Label itemDescriptionLabel
+- bool isItemSuspended
+- VisualElement selectItemIcon
+- Label tipLabel
+- Sprite rotateSelectedItemSprite
+- Sprite selectItemSprite
+- Sprite weaponIcon
+- Sprite armorIcon
+- Sprite consumableIcon
+- String originalTipTest
+- Vector2 mousePosition
+- Player player
+- float slotSize
+- bool rightClickHandled
+- button equipButton
+- button dropButton
+- button useButton
+- ScrollView itemDescriptionScrollView
+- ScrollView stats
+- VisualElement weaponArea
+- VisualElement armorArea
+- VisualElement quickItem1Area
+- VisualElement quickItem2Area
+- VisualElement weaponBG
+- VisualElement armorBG
+- VisualElement quickItem1BG
+- VisualElement quickItem2BG
+- VisualElement weaponVisual
+- VisualElement armorVisual
+- VisualElement quickItem1Visual
+- VisualElement quickItem2Visual
+- VisualElement descItemVisual
+- VisualElement gridFrame
+- VisualElement navBar
+- VerifyAndEquipItems()
+- HighlightEquipSlots()
+- RemoveAllEquipHighlights()
+- ClearEquipFrameSelection()
+- OnQuickItem2AreaClicked(PointerDownEvent evt)
+- OnQuickItem1AreaClicked(PointerDownEvent evt)
+- OnArmorAreaClicked(PointerDownEvent evt)
+- OnWeaponAreaClicked(PointerDownEvent evt)
+- EquipButtonClicked()
+- IsItemEquipped(IventoryItemData item):bool
+- SetItemVisualInEquipeArea(InventoryItemData item, bool consumable2 = false)
+- EquipItem(InventoryItemData item, bool consumable2 = false)
+- UnequipItem(InventoryItemData item)
+- OnRightClick(PointerDownEvent evt)
+- OnGridGeometryChanged(GeometryChangedEvent evt)
+- CalculateGridPosition(float mousePosition, float gridStartPosition, float slotSize): int
+- OnPointerDown(PointerDownEvent evt)
+- IsClickInEquipArea(VisualElement target):bool
+- ClearItemDetaisl()
+- UpdateItemDetails(InventoryItemData selectedItem)
+- ShowitemStatus(InventoryItemData itemData)
+- CreateSnapshot(InventoryItemData item):InventoryItemData
+- SetupFloatingItem(InventoryItemData item)
+- IsCellOccupiedByItem(InventoryItemData item, int x, int y):bool
+- OnPointerMove(PointerMoveEvent evt)
+- RotateSelectedItem()
+- OnPointerUp(PointerUpEvent evt)
+- ResetItemPosition()
+- HandleEquipFromDrop(InventoryItemData selectedItem, VisualElement targetArea)
+- GetEquippedItem(VisualElement equipArea):InventoryItemData
+- IsDroppedInEquipArea(PointerUpEvent evt, out VisualElement targetArea):bool
+- SetItemSuspendedState(bool isSuspended)
+- UpdateUI(List<InventoryItemData> items)
+- PlaceItemInGrid(InventoryItemData item):bool
+- CreateItemVisual(InventoryItemData item): VisualElement
+- CalculateOffsets(int finalWidth, int finalHeight):(float offsetX, float offsetY)
+- GCD(int a, int b):int
+- ClearGrid()
+- GetSlotAt(int x, int y):VisualElement
+- HighlightSlots(int xStart, int yStart, int width, int height, bool valid)
+- ClearHighlights()
+- 
 }
 
 DiaryUI --> UIHelper : uses
 InventoryUI --> UIHelper : uses
+InventoryUI --> Player : retrieves inventory from
 OptionsUI --> UIHelper : uses
 
 class UIHelper{
