@@ -1,3 +1,4 @@
+
 ## Características físicas
 
 Tem aproximadamente 0,5m, corpo com textura úmida e escorregadia, tem apenas dois membros locomotores que se estendem e reorganizam no corpo de acordo com a necessidade. São ligeiros e ágeis, não possuem cabeça ou quadril, o corpo esférico lembra o interior de uma ostra. 

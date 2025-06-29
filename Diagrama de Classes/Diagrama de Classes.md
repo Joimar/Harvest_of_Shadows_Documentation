@@ -301,11 +301,37 @@ class InteractiveResponse{
 + List~PlotVariable~ requiredVariables
 + List ~PlotVariable~ triggeredVariables
 + String nextStoryNodeId
-+ List ~DialogueOptions~ options
++ List ~IResponseAction~ actions
 }
 
 InteractiveResponse o-- PlotVariable
-InteractiveResponse o-- DialogueOption
+InteractiveResponse o-- IResponseAction
+
+
+class IResponseAction{
+<<Interface>>
++ Execute(NPCInteractable context)
+}
+
+class DialogueAction{
++List~DialogueLine~ dialogueLines
++List~DialogueOptions~ options
+}
+
+DialogueAction ..|> IResponseAction
+MoveToAction ..|> IResponseAction
+
+class MoveToAction{
++NPCInteractable target
++Transform targetPostion
++ float speed
+}
+
+class MoveTo{
++NPCInteractable target
++Transform targetPostion
++ float speed
+}
 
 class ItemInteractable{
  - Item item
@@ -327,12 +353,18 @@ class IInteractable{
 class NPCInteractable{
 -List~InteractiveResponse~ responses
 - InteractiveResponse lastResponse
-- GetValidResponses(GameStateManager gms) 
+- GetValidResponses(GameStateManager gms)
+- ProcessResponseActions(InteractiveResponse response, GameStateManager gsm)
++ RecieveMoveCommand(MoveTo move)
++ StartDialogue(List~DialogeLine~ Lines, List~DialogueOption~ options, Action~DalogueOption~ onOptionSelected)
 }
 
 NPCInteractable --> GameStateManager : recieves information from
 NPCInteractable ..|> IInteractable : implements
 NPCInteractable o-- InteractiveResponse
+NPCInteractable --> DialogueLine : uses
+NPCInteractable --> DialogueOption : uses
+NPCInteractable --> MoveTo : uses
 
 class PlotVariableType{
 <<enum>>
