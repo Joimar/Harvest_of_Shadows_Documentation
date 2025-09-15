@@ -15,3 +15,12 @@ Tabela de Interações
 | Slow   | Refresh |         |     |
 | Poison |         | Refresh |     |
 |        |         |         |     |
+
+
+Haste
+Bruning
+Paralysis
+Frozen
+Blind
+Confusion (inverter controler)
+Regen
