@@ -76,7 +76,7 @@
 
 ### Domination Spells
 
-- **Título**: Hypnoctic Gaze
+- **Título**: Hypnotic Gaze
 - **Spell Type**: Domination
 - **Target Type**: Single Target
 - **Descrição**: Paralizar um inimigo por 3 segundos (3 turnos);
@@ -136,3 +136,6 @@ MODELO:
 - **Descrição**:
 - **Reagentes**:
 - **Insanidade**:
+- Range
+- EffectRadius
+- CoolDown
