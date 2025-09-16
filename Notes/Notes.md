@@ -11,5 +11,7 @@ Reuniões de decisão e design
 	- [[Reunião 28-07-2025]]
 - **[[Junho 2025]]**
 	- [[Reunião 19-06-2025]]
+- **[[Setembro 2025]]**
+	- [[Reunião 15-09-2025]]
 
 %% End Waypoint %%
