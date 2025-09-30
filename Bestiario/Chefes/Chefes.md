@@ -1,8 +1,7 @@
 %% Begin Waypoint %%
-1.[[Fome]]
-2.[[Guerra]]
-3.[[Morte]]
-4.[[Peste]]
-
+- [[1 Peste]]
+- [[2 Guerra]]
+- [[3 Fome]]
+- [[4 Morte]]
 
 %% End Waypoint %%
