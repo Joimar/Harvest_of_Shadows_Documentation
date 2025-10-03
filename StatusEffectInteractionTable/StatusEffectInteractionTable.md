@@ -18,7 +18,7 @@ Tabela de Interações
 
 
 Haste
-Bruning
+Burning
 Paralysis
 Frozen
 Blind
