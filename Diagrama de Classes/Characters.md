@@ -120,3 +120,71 @@ IProfileProvider *-- DefensiveProfile
 IProfileProvider *-- OffensiveProfile
 
 ```
+
+```mermaid
+
+classDiagram
+
+class Player{
++ event Action OnItemquipped
++ event Action OnItemUnequipped
++ event Action OnItemDepleted
++ event Action~float~ OnHealthChanged
++ event Action~float~ OnInsanityChanged
+- ICostService cost
+- ICostReservation _pendingReservation
+- Animator animator
+- SpriteRenderer playerSpriteRenderer
+- float baseMoveSpeed
+- float EffectiveMoveSpeed
++ float MoveSpeed
+- RigidBody2D playerRB
+- Vector2 moveInput
+- float horizontalMovement
+- PlayerTargetingSystem playerTargetingSystem
+-  TargetManager targetManager
+-int healthPoints
+-int maxHealthPoints
+- int baseMaxHealthPoints
+}
+
+Player --> ICostReservation: uses
+Player --> PlayerTargetingSystem: uses
+Player --> TargetManager: uses
+
+class CostService{
++Reserve(Action onCommit, Action onRollback) ICostReservation
+}
+
+class Reservation{
+- Action _commit
+- Action _rollback
++ bool IsCommited
++ Reservation(Action commit, Action rollBack)
+  +Commit()
+  +Rollback
+
+}
+
+CostService ..> Reservation: Depends
+Reservation ..|> ICostReservation : implements
+
+class ICostReservation{
+<<Interface>>
++bool IsCommited
++Commit()
++RollBack()
+}
+
+Player --|> MonoBehaviour : inherits from
+Player ..|> IStatusAffectable: Implements
+Player --> CostService: uses
+CostService ..|> ICostService: Implements
+
+class ICostService{
+<<interface>>
+
+Reserve(Action OnCommit, Action onRollBack) ICostReservation
+}
+
+```
