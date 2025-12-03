@@ -77,12 +77,12 @@ class OffensiveProfile{
 +List~GenPenEntry~ generalPenetrations
 +List~SpecPenEntry~ specificPenetrations
 
-%%Methods
-%%Leitura
+%% Methods
+%% Leitura
 +GetSnapshot():OffensiveSnapshot
 +GetPenetrationFor(DamageType damageType, DamageTypeMap map, out float penGeneralPct, out float penSpecPct)
 +GetPenetrationSet(DamageType t, DamageTypeMap map) PenetrationSet
-%%Escrita
+%% Escrita
 +SetSpecificPenetration(DamageType type, int ammountPct)
 +SetGeneralPenetration(DamageCategory category, int ammountPct)
 +ApplyState(OffensiveState state)
@@ -99,7 +99,7 @@ class OffensiveState{
 +OffensiveState()
 +OffensiveState(OffensiveProfile profile)
 +Defaults() OffensiveState
-%%Leitura
+%% Leitura
 +GetGeneralPenetration(DamageCategory category) float
 +GetSpecificPenetration(DamageType type) float
 +ToOffensiveSnapshot() OffensiveSnapshot
@@ -143,14 +143,225 @@ class Player{
 - float horizontalMovement
 - PlayerTargetingSystem playerTargetingSystem
 -  TargetManager targetManager
--int healthPoints
--int maxHealthPoints
-- int baseMaxHealthPoints
+-float healthPoints
+-float maxHealthPoints
+- float baseMaxHealthPoints
++float HealthPoints
++float MaxHealthPoints
+-float insanity
+-float maxInsanity
+-float basMaxInsanity
++float Insanity
++float MaxInsanity
++float BaseMaxInsanity
+-bool isAlive
++boll IsAlive
+-Inventory inventory
++Inventory Inventory
+-bool isMoving
+-bool isFacingRight
++bool IsMoving
+-bool canAttack
++bool CanAttack
+-bool isTargeting
+-StatusEffectController statusEffectController
++StatusEffectController StatusEffectController
+-float moveSpeedMultiplier
+%% SpellBook Related
+-SpellBook playerSpellBook
++SpellBook PlayerSpellBook
+-SpellController spellController
++SpellController SpellController
+
+%% Insanity Related
+
++ApplyInsanityDelta(float baseDelta)
+-DefensiveProfile playerDefensiveProfile
++DefensiveProfile DefensiveProfile
+-OffensiveProfile playerOffensiveProfile
++OffensiveProfile OffensiveProfile
++String DisplayName
++Transform Transform
+-CombatModifierHub combatModifierHub 
++CombatModifierHub CombatModifierHub
+%%Turn Based Player
+-TurnBasedPlayer turnBasedPlayer
++TurnBasedPlayer TurnBasedPlayer
+
+%% Passives 
+-PassiveController passiveController
++PassiveController PassiveController
+
+%% Member Methods
++GetIsTargeting() bool
++SetIsTargeting(bool value)
+-UseQuickItem1(CallBackContext context)
+-UseQuickItem2(CallBackContext context)
+-HandleTargetingResult(bool success)
+-TryActivateQuickItem(ITargetable quickItem)
++Move(CallBackContext context)
+-FlipSprite()
+%% Temporário
++RestartStage(CallbackContext context)
++AddItem(InventoryItemData itemData)
++AddItem(Item item, int width, int height, int quantity)
++DropItem(InventoryItemData item)
++EquipItem(InventoryItemData itemData, bool consumable2)
++RefreshStatsFromCombatMods()
+-SetEquipped~InventoryItemData~(InventoryItemData newItem, ref InventoryItemData slotRef)
++UnequipItem(InventoryItemData itemData) InventoryItemData
++StartInventory()
++SetDataFromDTO(PlyerDTO playerDTO)
++UseItem(InventoryItemData currentItem)
++GetCurrentHealth() float
++Heal(float amount)
++SetSpeedMultiplier(float multiplier)
++GetBaseSpeed() float
++Cast(Spell spell)
++HandleInsanity(float baseDelta, bool applyMods)
++ReduceItemQuantity(InventoryItemData itemData, int quantity)
+
 }
 
 Player --> ICostReservation: uses
-Player --> PlayerTargetingSystem: uses
-Player --> TargetManager: uses
+Player *-- PlayerTargetingSystem
+Player *-- TargetManager
+Player *-- Inventory
+Player *-- StatusEffectController
+Player *-- SpellBook
+Player *-- SpellController
+Player *-- DefensiveProfile
+Player *-- OffensiveProfile
+Player --> InputAction: reads input by
+Player -- ITargetable : interacts with
+Player -- InventoryItemData : uses
+Player <.. PlayerDTO :depends on
+Player --> Spell: casts
+
+class SpellController{
+-SpellBook spellBook
+-MonoBehaviour CombatModProviderComponent
+-ICombatModProvider CombatModProvider
+-float minCoolDown
+-Dictionary~Spell,float~ _lastCastAt
++Action~Spell~ OnSpellCasted
+-List~Spell~ wardingSpells
+-List~Spell~ dominationSpells
+-List~Spell~ mutationSpells
+-List~Spell~ destructionSpells
+-List~Spell~ realityDistortionSpells
+-Spell quickSpell1
+-Spell quickSpell2
+-RebuildLocalViews()
++SetQuickSpell1()
++SetQuickSpell2()
++GetQuickSpell1()
++GetQuickSpell2()
++GetEffectiveCoolDown(Spell s) float
++IsOnCooldown(Spell s) bool
++GetRemainingCooldown(Spell s) float
++ClearCooldowns()
+}
+
+SpellController *-- ICombatModProvider
+SpellController o-- Spell
+
+class PlayerTargetingSystem{
++Action~bool~OnTargetingStateChanged
++Action~bool~OnTargetingSuccessful
++ITargetableAction currentAction
++bool showRange
+-GameObject rangeIndicatorPrefab
+-GameObject rangeIndicatorInstance
+-Vector3 _lastConfirmedPoint
+~SetLastConfirmedPoint(Vector3 p)
++GetLestConfirmedPoint() Vector3
+-Player player
++StartTargeting(ITargetableAction action)
+}
+
+PlayerTargetingSystem *-- ITargetableAction
+PlayerTargetingSystem --|> MonoBehaviour
+PlayerTargetingSystem --> Player: references
+
+class ITargetableAction{
+<<interface>>
++float Range
++BeginPreview()
++UpdatePreview(Vector2 targetPos)
++Confirm() bool
++Cancel()
++IsValidTarget(Vector2 targetPos) bool
+}
+
+namespace TargetableActions{
+
+	class AreaTargetingAction{
+	-ITargetable targetableEntity
+	-float effectRadius
+	-float range
+	-Player player
+	-bool centerOnPlayer
+	-GameObject previewInstance
+	-GameObject previewPrefab
+	-LayerMask wallMask
+	+float Range
+	+SetPreviewColor(Color color)
+	}
+	
+	class ProjectileTargetingAction{
+	- Player player
+	- ITargetable targetable
+	- GameObject previewInstance
+	- ArrowIndicator_InputSystem arrowIndicator
+	+ float Range => targetable.UseRange
+	- SpriteRenderer headSprite
+	- float headOffset  
+	}
+	
+
+	class SingleTargetingAction{
+	-Player player;
+    -ITargetable targetable
+    -CursorMode cursorMode
+    -Texture2D cursorTexture
+    -bool isInRange = true
+	+float Range
+	-ApplyColorTint(Texture2D source, Color tint) Texture2D		
+	}
+	class TrapTargetingAction{
+	-ITargetable targetableEntity
+	-float effectRadius
+	-float range
+	-Player player
+	-bool centerOnPlayer
+	-GameObject previewInstance
+	-GameObject previewPrefab
+	-LayerMask wallMask
+	+float Range
+	+SetPreviewColor(Color color)
+	}
+}
+
+class DeployablePreviewRadiusController{
+-float radius
++float Radius
+-GameObject deployableRadiusPreviewObject
+}
+
+AreaTargetingAction --> Player: references
+AreaTargetingAction ..|> ITargetableAction:implements
+AreaTargetingAction --> DeployablePreviewRadiusController: manipulates
+TrapTargetingAction --> Player: references
+TrapTargetingAction ..|> ITargetableAction:implements
+TrapTargetingAction --> DeployablePreviewRadiusController: manipulates
+ProjectileTargetingAction *--ArrowIndicator_InputSystem
+ProjectileTargetingAction..|> ITargetableAction:implements
+SingleTargetingAction --> Player: references
+SingleTargetingAction ..|> ITargetableAction:implements
+DeployablePreviewRadiusController --|> MonoBehaviour: inherits from
+
+
 
 class CostService{
 +Reserve(Action onCommit, Action onRollback) ICostReservation
