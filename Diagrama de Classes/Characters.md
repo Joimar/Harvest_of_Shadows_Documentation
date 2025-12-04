@@ -1,3 +1,4 @@
+# DefensiveProfile and OffensiveProfile
 ```mermaid
 classDiagram
 
@@ -16,7 +17,8 @@ DefensiveProfile --|> MonoBehaviour
 class DefensiveProfile{
 +uint version
 +event Action OnChanged
-+float dodgeChance
++float dodgeChanceclassA <|-- classB
+
 +List~SpecDamageResEntry~ specificDamageResistances
 +List~GenDamageResEntry~ generalDamageResistances
 +GetResistance(DamageType type) float
@@ -120,6 +122,7 @@ IProfileProvider *-- DefensiveProfile
 IProfileProvider *-- OffensiveProfile
 
 ```
+# Player, SpellController, PlayerTargetingSystem, TargetableActions, ICostReservation,
 
 ```mermaid
 
@@ -237,6 +240,8 @@ Player -- ITargetable : interacts with
 Player -- InventoryItemData : uses
 Player <.. PlayerDTO :depends on
 Player --> Spell: casts
+Player --> TargetSolution : usesclassA <|-- classB
+
 
 class SpellController{
 -SpellBook spellBook
@@ -397,5 +402,102 @@ class ICostService{
 
 Reserve(Action OnCommit, Action onRollBack) ICostReservation
 }
+
+```
+# Enemy, ChaserEnemy, Components, Utilities
+```mermaid
+classDiagram
+class Enemy{
+%% Vitals
+# float healthPoints
++ float HealthPoints
+# float maxHealthpoints
++ float MaxHealthpoints
+%% Movement
+
+# float moveSpeed
+# Transform playerTransform
+
+%% Profiles
+
+#OffensiveProfile offensiveProfile
+#DefensiveProfile deffensiveProfile
+
+%% IDamageable
+
++ bool IsAlive
++ string DisplayName
++ Transform Transform
+  
+# PerformEnemyMovement()
+}
+
+Enemy --|> MonoBehaviour : inherits from
+Enemy ..|> IDamageable: implements
+Enemy ..|> IProfileProvider: implements
+Enemy --> Player : references
+Enemy *-- OffensiveProfile
+Enemy *-- DefensiveProfile
+
+class ChaserEnemy{
+- StatusEffectController statusEffectController
+-string DisplayName
+-float moveSpeedMultiplier
+-bool canAttack
+-bool isAlive
+- CombatModifierHub combatModifierHub
+}
+
+ChaserEnemy --|> Enemy : inherits form
+ChaserEnemy ..|> IStatusAffectable : implements
+ChaserEnemy *-- StatusEffectController
+ChaserEnemy *-- CombatModifierHub
+namespace Components{
+	class EnemySpellCaster{
+	%% Refs
+	- MonoBehaviour enemyRef
+	  
+	%% Listas de Assstes com targetable ou components
+	
+	- ScriptableObject[] targetableAssets
+	- MonoBehaviour[] targetableComponents
+	
+	%% Comportamento
+	
+	- float lastCastCooldown
+	- bool debugLog
+	- Enemy enemy
+	- AiTargetResolver resolver
+	- List~ITargetable~ _targetables
+	- int _cursor
+	- float lastCastTime
+	- int Count
+	+ RebuildTargetables()
+	+ CanCastNow() bool
+	+ TryCastIndex(int index) bool
+	+ TrayCastNext() bool
+	- CastInternal(ITargetable it) bool  
+	+ExecuteNow(Enemy caster, ITargetable source, TargetSolution sol) bool
+	
+	}
+}
+
+
+namespace Utilities{
+	class IAiTargetResolver{
+	<<interface>>
+	+ Resolve(Component caster, ITargetable source) TargetSolution
+	}
+	
+	class SimpleAitargetResolver{
+		+ Resolve(Component caster, ITargetable source) TargetSolution
+	}
+}
+
+EnemySpellCaster --|> MonoBehaviour : inherits from
+EnemySpellCaster *-- Enemy
+EnemySpellCaster *-- IAiTargetResolver
+EnemySpellCaster --> TargetSolution : uses
+SimpleAitargetResolver ..|> IAiTargetResolver : implements
 
 ```
