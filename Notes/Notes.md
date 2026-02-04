@@ -11,6 +11,9 @@ Reuniões de decisão e design
 	- [[Reunião 28-07-2025]]
 - **[[Junho 2025]]**
 	- [[Reunião 19-06-2025]]
+- **[[Novembro 2025]]**
+	- [[Anotações 05-11-2025]]
+	- [[Notas 10-11-2025]]
 - **[[Outubro 2025]]**
 	- [[Reunião 03-10-2025]]
 	- [[Reunião 11-10-2025]]

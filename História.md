@@ -1,0 +1,21 @@
+O que **realmente** está acontecendo:
+
+Dr. Driftwood foi para o Egito em uma de suas expedições, ele foi até a tumba do faraó obscuro (Uma das identidade de Nyarlathotep). Lá ele encontra um papíro, que indica a localização de um encontro entre o faraó obscuro e outra entidade, em território além-mar.
+Driftwood leva secretamente o papíro até a Inglaterra, onde descobre que o ponto de encontro ao qual ele se referia era nada mais do que a mansão Driftwood. Fascinado, Dr. Driftwood decida investir boa parte de sua forntuna na compra de equipamento e contratação de pessoal para uma "reforma" da mansão, secretamente escavando um sítio arqueológico em baixo de sua propriedade.
+Após meses de reforma, os trabalhadores começaram a desaparecer.
+Driftwood, preocupado, vai até as profundesas da escavação, descobrindo que os homens entraram em contato com as raízes de uma planta misteriosa e enlouqueceram, atacando uns aos outros. Driftwood descobre que a planta em questão era uma das plantas de sua estufa, a mais antiga de seu acervo. Uma planta de aparencia alienígena, e pétalas que se assemelhavam a olhos fechados.
+Ele decide ir mais a fundo na escavação e descobre um altar dedicado aos deuses, lá ele encontra uma construção de pedra semelhante a Stonehenge, e com ele um livro encadernado em pele humana, o Necronomicon.
+Driftwood faz uma tradução do livro e fascinado, ele tenta invocar Yogg-Sothoth, o senhor dos segredos, mas seu ritual falha, e seu ritual não tem o efeito desejado, os corpos no local são reanimados como cruaturas grotescas, e Driftwood é obrigado a fugir e selar o sítio.
+Ele dedica seu tempo remanescente a estudar o Necronomico, também todo tipo de magia e alquimia que poderia lhe proteger do mal que habitava aquele local, tudo isso longe dos olhos de seus funcionários, Eames era o único que chegou a presenciar algum tipo de atividade sobrenatural sob a tutela do Dr. Driftwood.
+Meses depois, munido com armas arcanas, poções e conhecimento alquímico, Driftwood volta ao local, conseguindo derrotar os monstros e concluir o ritual de invocação de Yogg-Sothoth. O Deus do além revela para Driftwood que aquele local era a alcova de seu irmão, Nyarlathotep e uma de suas concubinas, Shub Niggurath, juntos, eles criaram um novo deus Antigo, que era reverianciado pelo povo que lá habitava, mas o novo Deus era faminto, e devorava as almas humanas, deixando em seu local apenas constructos de carne, que se deformavam conforme seu poder. Amendrotados, os humanos conduziram um ritual para prender o Deus antigo na forma de uma planta. E que a interferência de Driftwood naquele local, havia acordado o Deus adormecido, porém ele ainda não havia restituido sua forma final, ele precisava consumir mais almas, então havia uma chance de salvar a humanidade.
+Driftwood pede a Yogg pelo poder para salvar a todos, ao que Yogg responde, que ele não pode se interferir nos assuntos de seus irmãos, mas que perder a humanidade seria uma lástima, já que eles eram tão divertidos de atormentar... o máximo que ele poderia fazer era tornar Driftwood e sua linhagem imunes ao poder da planta, assim sendo capazes de ignorar seu poder de controle mental, no entando, o conhecimendo do oculto teria seu preço. Ao que Driftwood aceitou.
+Nos próximos meses, ele começou a pesquisar incessantemente formas de selar novamente a planta, sem saber que ela já sussurrava nos ouvidos de seus empregados.
+Finalmente, o preço pelo conhecimento proíbido é a insanidade, e o Dr. Driftwood tomou sua própria vida, antes que ele pudesse concluir o trabalho, mas não antes de fazer um testamento, passar a tocha para um herdeiro, alguém que, assim como ele, era imune a influência malévola da planta, mas que, assim como ele, poderia ser corrompido pela insanidade.
+Nyarlathotep manda seus arautos para libertar seu filho, estes são inspirados nos cavaleiros de apocalipse cristão:
+
+- Peste: Um bispo católico.
+- Fome: Um banqueiro.
+- Guerra: Um general aposentado.
+- Morte: Uma médica psiquiátrica.
+
+Todos  eles se apresentam como compradores da mansão Driftwood, e suas aparições fazem novas criaturas aparecer para o herdeiro durante à noite.
