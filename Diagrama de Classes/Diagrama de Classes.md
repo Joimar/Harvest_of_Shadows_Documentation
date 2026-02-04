@@ -676,3 +676,4 @@ InventoryItemDataOperations --> InventoryItemData
 InventoryUI --> InventoryItemDataOperations : uses
 InventoryItemDataOperations --> ItemPos
 ```
+
