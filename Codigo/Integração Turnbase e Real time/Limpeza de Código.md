@@ -4,6 +4,18 @@
 Detalhes: 
 - BattleContext tem que gerar turn base enemy e player baseado nos DTOs dos Real Time.
 - Adicionar nos DTOs os Profiles DTOs e os Status Effects DTOs.
+
+Rascunho:
+
+Os DTOs estão no StageData.
+
+O StageData é usado no SaveManager, que por sua vez está no GameManager
+
+DTO Enmies e jogador
+
+Entrar na scene -> ler DTOs 
+
+De onde vou pegar os DTOs??? Resposta: BattleContextFactory vai pegar os DTOs 
 ## 2 - Alterar BattleContextFactory
 
 Detalhes: 
