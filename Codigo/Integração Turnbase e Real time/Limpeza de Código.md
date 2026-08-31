@@ -34,3 +34,11 @@ Motivo: Atualmente se o jogador sair da scene por uma porta, ao voltar para a me
 
 ## 5 - Modificar o Status Effect para ignorar ticks por segundo quando o combate por turnos ocorrer
 
+
+
+## Rascunho
+
+A scene de combat precisa de um prefabdatabase com todos os inimigos. 
+
+Sugestão: o scene prefab database não ter inimigos em real-time, apenas em turn base. Para a gente recuperar os inimigos, faremos com que a chave do turnbase seja igual à do real time para haver equivalência.
+
